@@ -1,4 +1,4 @@
-import React, { ReactNode, Suspense } from "react";
+import React, { ReactNode, Suspense, useEffect, useState } from "react";
 import { useLoader } from "@react-three/fiber";
 import { Text3D, Center, MeshTransmissionMaterial } from "@react-three/drei";
 import { RGBELoader } from "three-stdlib";

@@ -27,7 +27,7 @@ function FloatingParticles() {
   );
 }
 
-export const StarField = () => {
+export default function StarField() {
   return (
     <div className="h-screen w-full">
       <Canvas
@@ -49,4 +49,4 @@ export const StarField = () => {
       </Canvas>
     </div>
   );
-};
+}

@@ -23,6 +23,7 @@
     "mousetrap": "^1.6.5",
     "next": "15.5.4",
     "openmeteo": "^1.2.1",
+    "r3f-perf": "^7.2.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-responsive": "^10.0.1",

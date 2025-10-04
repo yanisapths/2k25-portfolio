@@ -1,8 +1,6 @@
 import { Footer } from "@/components/home/Footer";
-import { Background, BgElement } from "@/components/home/background/Background";
-import { Noise } from "@/components/effect/Noise";
-import { StarField } from "@/components/home/background/StarField";
-import { Chrome } from "../effect/Chrome";
+import { BgElement } from "@/components/home/background/Background";
+import Chrome from "../effect/Chrome";
 
 export default function Home() {
   return (

@@ -15,20 +15,21 @@ export const LoadingSplash = ({
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => {
-        if (prev >= 100) {
+        const next = prev + Math.random() * 15;
+        if (next >= 100) {
           clearInterval(interval);
-          setTimeout(() => {
-            setIsZooming(true);
-            setTimeout(onLoadComplete, 1000);
-          }, 100);
-          return 100;
+          setProgress(100);
+
+          setTimeout(() => setIsZooming(true), 100);
+
+          setTimeout(onLoadComplete, 100);
         }
-        return prev + Math.random() * 15;
+        return next >= 100 ? 100 : next;
       });
-    }, 100);
+    }, 80);
 
     return () => clearInterval(interval);
-  }, [onLoadComplete]);
+  }, [onLoadComplete, setIsZooming]);
 
   return (
     <div

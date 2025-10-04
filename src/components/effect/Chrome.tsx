@@ -13,85 +13,51 @@ interface ChromeProps {
   text: string;
 }
 
-export const Chrome = ({ text }: ChromeProps) => {
-  const {
-    transmission,
-    roughness,
-    metalness,
-    clearcoat,
-    clearcoatRoughness,
-    ior,
-    thickness,
-    chromaticAberration,
-    anisotropy,
-    saturation,
-    environment,
-    shadow,
-    stripes,
-    samples,
-    distortion,
-    distortionScale,
-    backside,
-    backsideThickness,
-    color,
-  } = useControls({
-    environment: true,
-    backside: true,
-    metalness: { value: 0.5, min: 0, max: 1, step: 0.01 },
-    saturation: { value: -1, min: -1, max: 0 },
-    backsideThickness: { value: 0.5, min: 0, max: 1, step: 0.01 },
-    thickness: { value: 6.29, min: 0, max: 30, step: 0.01 },
-    samples: { value: 5, min: 1, max: 32, step: 1 },
-    transmission: { value: 1, min: 0, max: 1 },
-    clearcoat: { value: 0.1, min: 0.1, max: 1 },
-    clearcoatRoughness: { value: 0, min: 0, max: 1 },
-    chromaticAberration: { value: 5, min: 0, max: 5 },
-    anisotropy: { value: 1, min: 0, max: 1, step: 0.01 },
-    roughness: { value: 0, min: 0, max: 1, step: 0.01 },
-    distortion: { value: 4, min: 0, max: 4, step: 0.01 },
-    distortionScale: { value: 0.46, min: 0.01, max: 1, step: 0.01 },
-    temporalDistortion: { value: 0.69, min: 0, max: 1, step: 0.01 },
-    ior: { value: 1.57, min: 0, max: 2, step: 0.01 },
-    color: "#ffffff",
-    stripes: "#444",
-    shadow: "black",
-  });
-
-  const config = {
-    transmission,
-    roughness,
-    metalness,
-    clearcoat,
-    clearcoatRoughness,
-    ior,
-    thickness,
-    chromaticAberration,
-    anisotropy,
-    shadow,
-    stripes,
-    samples,
-    distortion,
-    distortionScale,
-    backside,
-    backsideThickness,
-    color,
-  };
+const configVaraints = {
+  environment: true,
+  backside: true,
+  metalness: { value: 0.5, min: 0, max: 1, step: 0.01 },
+  saturation: { value: -1, min: -1, max: 0 },
+  backsideThickness: { value: 0.5, min: 0, max: 1, step: 0.01 },
+  thickness: { value: 6.29, min: 0, max: 30, step: 0.01 },
+  samples: { value: 5, min: 1, max: 32, step: 1 },
+  transmission: { value: 1, min: 0, max: 1 },
+  clearcoat: { value: 0.1, min: 0.1, max: 1 },
+  clearcoatRoughness: { value: 0, min: 0, max: 1 },
+  chromaticAberration: { value: 5, min: 0, max: 5 },
+  anisotropy: { value: 1, min: 0, max: 1, step: 0.01 },
+  roughness: { value: 0, min: 0, max: 1, step: 0.01 },
+  distortion: { value: 4, min: 0, max: 4, step: 0.01 },
+  distortionScale: { value: 0.46, min: 0.01, max: 1, step: 0.01 },
+  temporalDistortion: { value: 0.69, min: 0, max: 1, step: 0.01 },
+  ior: { value: 1.57, min: 0, max: 2, step: 0.01 },
+  color: "#ffffff",
+  stripes: "#444",
+  shadow: "black",
+};
+const Chrome = ({ text }: ChromeProps) => {
+  const isDev = process.env.NODE_ENV === "development";
+  const config = isDev ? useControls(configVaraints) : (configVaraints as any);
 
   return (
     <Canvas
       shadows
       orthographic
       camera={{ position: [-1, 0, 5], zoom: 75 }}
-      gl={{ antialias: false }}
+      gl={{
+        antialias: true,
+        preserveDrawingBuffer: false,
+      }}
       style={{
         width: "100vw",
         margin: "auto",
       }}
     >
+      {/* <Perf position="top-left" /> */}
       <ambientLight intensity={10} />
 
       <group position={[0, -0.5, 0]}>
-        <Font lights environment={environment} config={config}>
+        <Font lights environment={true} config={config}>
           {text}
         </Font>
       </group>
@@ -119,8 +85,8 @@ export const Chrome = ({ text }: ChromeProps) => {
         </group>
       </Environment>
 
-      <EffectComposer multisampling={4}>
-        <HueSaturation hue={0} saturation={saturation} />
+      <EffectComposer multisampling={1}>
+        <HueSaturation hue={0} saturation={config?.saturation as any} />
         <TiltShift2 blur={0} />
       </EffectComposer>
       <OrbitControls
@@ -138,3 +104,5 @@ export const Chrome = ({ text }: ChromeProps) => {
     </Canvas>
   );
 };
+
+export default Chrome;
