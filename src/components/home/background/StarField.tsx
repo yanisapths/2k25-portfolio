@@ -3,6 +3,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
 import { useRef } from "react";
 import { Points } from "three";
+import { ZoomedParticles } from "./ZoomedParticles";
 
 function FloatingParticles() {
   const particlesRef = useRef<Points>(null);
@@ -17,7 +18,7 @@ function FloatingParticles() {
       ref={particlesRef}
       radius={100}
       depth={1}
-      count={3000}
+      count={2000}
       factor={4}
       saturation={0}
       fade
@@ -36,6 +37,7 @@ export const StarField = () => {
         <color attach="background" args={["#000000"]} />
         <ambientLight intensity={0.1} />
         <FloatingParticles />
+        <ZoomedParticles />
         <OrbitControls
           enablePan={true}
           enableRotate={true}

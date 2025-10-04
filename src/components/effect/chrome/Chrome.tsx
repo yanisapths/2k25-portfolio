@@ -44,8 +44,8 @@ export const Chrome = ({ text }: ChromeProps) => {
     thickness: { value: 6.29, min: 0, max: 30, step: 0.01 },
     samples: { value: 5, min: 1, max: 32, step: 1 },
     transmission: { value: 1, min: 0, max: 1 },
-    clearcoat: { value: 0.32, min: 0.1, max: 1 },
-    clearcoatRoughness: { value: 1, min: 0, max: 1 },
+    clearcoat: { value: 0.1, min: 0.1, max: 1 },
+    clearcoatRoughness: { value: 0, min: 0, max: 1 },
     chromaticAberration: { value: 5, min: 0, max: 5 },
     anisotropy: { value: 1, min: 0, max: 1, step: 0.01 },
     roughness: { value: 0, min: 0, max: 1, step: 0.01 },
@@ -86,6 +86,7 @@ export const Chrome = ({ text }: ChromeProps) => {
       gl={{ antialias: false }}
       style={{
         width: "100vw",
+        margin: "auto",
       }}
     >
       <ambientLight intensity={10} />
@@ -99,19 +100,19 @@ export const Chrome = ({ text }: ChromeProps) => {
       <Environment resolution={32}>
         <group rotation={[-Math.PI / 4, -0.3, 1]}>
           <Lightformer
-            intensity={10}
+            intensity={8}
             rotation-x={Math.PI / 2}
             position={[0, 5, -9]}
             scale={[10, 10, 1]}
           />
           <Lightformer
-            intensity={10}
+            intensity={5}
             rotation-y={Math.PI / 2}
             position={[-10, 0, -1]}
             scale={[10, 2, 1]}
           />
           <Lightformer
-            intensity={10}
+            intensity={3}
             rotation-y={-Math.PI / 2}
             position={[10, 1, 0]}
             scale={[20, 10, 1]}
@@ -122,7 +123,6 @@ export const Chrome = ({ text }: ChromeProps) => {
       <EffectComposer multisampling={4}>
         <HueSaturation hue={0} saturation={saturation} />
         <TiltShift2 blur={0} />
-        <ChromaticAberration offset={[0.0009, 0.0009]} />
       </EffectComposer>
       <OrbitControls
         enableRotate={true}
