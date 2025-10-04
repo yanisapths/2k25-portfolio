@@ -14,7 +14,7 @@ const StarField = dynamic(
   () => import("@/components/home/background/StarField"),
   {
     ssr: false,
-    loading: () => <img src="/images/font/placeholder.webp"></img>,
+    loading: () => <img src="/images/font-placeholder.webp"></img>,
   }
 );
 
