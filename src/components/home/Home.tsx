@@ -1,5 +1,5 @@
 import { Footer } from "@/components/home/Footer";
-import { Background } from "@/components/home/background/Background";
+import { Background, BgElement } from "@/components/home/background/Background";
 import { Noise } from "@/components/effect/Noise";
 import { StarField } from "@/components/home/background/StarField";
 import { Chrome } from "../effect/Chrome";
@@ -10,6 +10,14 @@ export default function Home() {
       <StarField />
       <Background />
       <Noise />
+      <BgElement
+        imgSrc="/images/home/element1.webp"
+        className="absolute -top-[15%] -left-[15%] lg:-top-[10%] lg:-left-[10%]"
+      />
+      <BgElement
+        imgSrc="/images/home/element2.webp"
+        className="absolute lg:bottom-[5%] lg:-right-[25%]"
+      />
 
       <div className="absolute inset-0 m-auto flex flex-col justify-center">
         <div className="h-auto w-fit">
