@@ -1,4 +1,7 @@
 "use client";
+import { Noise } from "@/components/effect/Noise";
+import { Background } from "@/components/home/background/Background";
+import { StarField } from "@/components/home/background/StarField";
 import { FeaturedWorks } from "@/components/home/featured-works/page";
 import Home from "@/components/home/Home";
 import { Overview } from "@/components/home/my-space/Overview";
@@ -28,6 +31,11 @@ export default function HomePage() {
         <div>
           <Header />
           <div className="pointer-events-none flex flex-col h-auto w-screen items-center justify-center">
+            <div className="fixed inset-0">
+              <StarField />
+              <Background />
+              <Noise />
+            </div>
             <Home />
 
             <Overview />

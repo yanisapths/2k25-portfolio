@@ -65,6 +65,6 @@ function SaturnModel() {
   });
 
   return (
-    <primitive ref={group} object={scene} position={[0, 0, 0]} scale={0.013} />
+    <primitive ref={group} object={scene} position={[0, 0, 0]} scale={0.02} />
   );
 }
