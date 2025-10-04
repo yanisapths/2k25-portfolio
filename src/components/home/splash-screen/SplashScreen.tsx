@@ -20,13 +20,13 @@ export const LoadingSplash = ({
           clearInterval(interval);
           setProgress(100);
 
-          setTimeout(() => setIsZooming(true), 100);
+          setTimeout(() => setIsZooming(true), 50);
 
-          setTimeout(onLoadComplete, 100);
+          setTimeout(onLoadComplete, 300);
         }
         return next >= 100 ? 100 : next;
       });
-    }, 80);
+    }, 100);
 
     return () => clearInterval(interval);
   }, [onLoadComplete, setIsZooming]);
