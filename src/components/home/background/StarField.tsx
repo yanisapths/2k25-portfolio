@@ -39,6 +39,7 @@ export const StarField = () => {
         <FloatingParticles />
         <ZoomedParticles />
         <OrbitControls
+          enableZoom={false}
           enablePan={true}
           enableRotate={true}
           panSpeed={0.5}
