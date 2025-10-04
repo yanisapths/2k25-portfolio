@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { Header } from "@/components/navigation/header";
 import {
   clickerScript,
   climateCrisis,
   montserrat,
   silkscreen,
 } from "@/components/theme/font";
+import type { Metadata } from "next";
+import "./globals.css";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
@@ -24,10 +23,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${climateCrisis.variable} ${clickerScript.variable} ${silkscreen.variable} antialiased`}
       >
-        <Providers>
-          <Header />
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

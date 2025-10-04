@@ -1,0 +1,56 @@
+"use client";
+import { useEffect, useState } from "react";
+
+interface LoadingSplashProps {
+  onLoadComplete: () => void;
+  setIsZooming: any;
+}
+
+export const LoadingSplash = ({
+  onLoadComplete,
+  setIsZooming,
+}: LoadingSplashProps) => {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            setIsZooming(true);
+            setTimeout(onLoadComplete, 1000);
+          }, 100);
+          return 100;
+        }
+        return prev + Math.random() * 15;
+      });
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [onLoadComplete]);
+
+  return (
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-background transition-all duration-500`}
+    >
+      <div className="relative z-10 text-center space-y-8 px-4">
+        <div className="w-full max-w-md mx-auto space-y-2 animate-fade-in">
+          <div className="h-1 bg-border rounded-full overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] animate-pulse-glow transition-all duration-300 ease-out"
+              style={{
+                width: `${progress}%`,
+                boxShadow: "0 0 20px hsl(var(--primary))",
+              }}
+            />
+          </div>
+          <div className="flex justify-between text-sm text-muted-foreground">
+            <span>LOADING</span>
+            <span className="px-2">{Math.round(progress)}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

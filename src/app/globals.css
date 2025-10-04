@@ -4,6 +4,10 @@
   --background: #ffffff;
   --foreground: #171717;
   --inspect-color: #f00;
+
+  /* Transitions */
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-zoom: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body.inspect * {
@@ -33,4 +37,41 @@ body {
 
 .font-silkscreen {
   font-family: var(--font-silkscreen);
+}
+
+@keyframes zoom-in {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+    filter: blur(0px);
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0;
+    filter: blur(2px);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: "0";
+    transform: "translateY(20px)";
+  }
+  100% {
+    opacity: 1;
+    transform: "translateY(0)";
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out;
+}
+
+.animate-zoom-in {
+  animation: zoom-in 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }

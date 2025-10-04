@@ -1,14 +1,36 @@
-import { Footer } from "@/components/home/Footer";
-import { Background } from "@/components/home/Background";
+"use client";
+import Home from "@/components/home/Home";
+import { LoadingSplash } from "@/components/home/splash-screen/SplashScreen";
+import { Header } from "@/components/navigation/header";
+import { useState } from "react";
 
-export default function Home() {
+export default function HomePage() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isZooming, setIsZooming] = useState(false);
+  const handleLoadComplete = () => {
+    setIsLoading(false);
+  };
+
   return (
-    <div className="relative flex flex-col m-auto w-full h-screen overflow-hidden">
-      <Background />
-
-      <div className="relative h-full">
-        <Footer />
-      </div>
+    <div>
+      {isLoading && (
+        <LoadingSplash
+          onLoadComplete={handleLoadComplete}
+          setIsZooming={setIsZooming}
+        />
+      )}
+      {!isLoading && (
+        <div>
+          <Header />
+          <div
+            className={`fixed pointer-events-none inset-0 flex items-center justify-center ${
+              isZooming ? "animate-zoom-in" : ""
+            }`}
+          >
+            <Home />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
