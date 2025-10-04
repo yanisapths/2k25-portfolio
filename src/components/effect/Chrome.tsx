@@ -1,10 +1,9 @@
 import React from "react";
-import { Font } from "../Font";
+import { Font } from "./Font";
 import { Canvas } from "@react-three/fiber";
 import { useControls } from "leva";
 import { Environment, Lightformer, OrbitControls } from "@react-three/drei";
 import {
-  ChromaticAberration,
   EffectComposer,
   HueSaturation,
   TiltShift2,

@@ -2,7 +2,7 @@ import { Footer } from "@/components/home/Footer";
 import { Background } from "@/components/home/background/Background";
 import { Noise } from "@/components/effect/Noise";
 import { StarField } from "@/components/home/background/StarField";
-import { Chrome } from "../effect/chrome/Chrome";
+import { Chrome } from "../effect/Chrome";
 import { useBreakpoints } from "@/app-hooks/use-breakpoints";
 
 export default function Home() {
@@ -15,7 +15,14 @@ export default function Home() {
       <Noise />
 
       <div className="fixed inset-0 flex items-center justify-center">
-        {md ? <Chrome text="Yanisa Poongthaisong" /> : <Chrome text="Yanisa" />}
+        <div className="h-auto w-fit">
+          <div className="hidden md:block">
+            <Chrome text="Yanisa Poongthaisong" />
+          </div>
+          <div className="block md:hidden">
+            <Chrome text="Yanisa" />
+          </div>
+        </div>
         <Footer />
       </div>
     </div>
