@@ -1,7 +1,7 @@
 "use client";
 import { Noise } from "@/components/effect/Noise";
 import { Background } from "@/components/home/background/Background";
-import { FeaturedWorks } from "@/components/home/featured-works/page";
+import { FeaturedWorks } from "@/components/home/featured-works/FeaturedWorks";
 import Home from "@/components/home/Home";
 import { Overview } from "@/components/home/my-space/Overview";
 import { LoadingSplash } from "@/components/home/splash-screen/SplashScreen";
