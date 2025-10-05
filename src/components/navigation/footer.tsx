@@ -4,6 +4,7 @@ import React from "react";
 import { GlassDock } from "../effect/GlassDock";
 import Link from "next/link";
 import { GithubIcon } from "../icons/github";
+import { motion } from "motion/react";
 
 export const Footer = () => {
   const currentYear = dayjs().year();
@@ -11,7 +12,12 @@ export const Footer = () => {
   return (
     <footer className="absolute max-w-screen mx-auto w-full inset-x-0 justify-center py-4 z-[99] pointer-events-auto">
       <div className="min-h-[50vh] md:min-h-[70vh] flex flex-col px-6 md:px-24">
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          viewport={{ amount: 0.5 }}
+        >
           <p className="font-black text-6xl md:text-9xl font-montserrat justify-center text-center items-center m-auto">
             LET'S BUILD TOGETHER
           </p>
@@ -31,7 +37,7 @@ export const Footer = () => {
               </GlassDock>
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <div className="max-w-screen-2xl mx-auto w-full flex md:flex-row flex-col text-center justify-center z-50 lg:justify-between text-white">

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Saturn from "./Saturn";
+import { ScrollFadeIn } from "@/components/ScrollFadeIn";
 
 const skillLists = [
   "3D DEVELOPMENT",
@@ -12,7 +13,7 @@ const skillLists = [
 ];
 export const Overview = () => {
   return (
-    <div className="relative flex flex-col m-auto w-full h-screen overflow-hidden">
+    <ScrollFadeIn>
       <div className="absolute inset-0 m-auto flex flex-col justify-center">
         <div className="relative flex justify-between  h-[80%] items-center">
           <p className="text-9xl font-black">MY SPACE</p>
@@ -40,6 +41,6 @@ export const Overview = () => {
           <p className="text-9xl font-black">MY SPACE</p>
         </div>
       </div>
-    </div>
+    </ScrollFadeIn>
   );
 };

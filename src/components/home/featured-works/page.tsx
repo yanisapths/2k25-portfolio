@@ -1,7 +1,8 @@
+import { ScrollFadeIn } from "@/components/ScrollFadeIn";
 import React from "react";
 export const FeaturedWorks = () => {
   return (
-    <div className="relative flex flex-col m-auto w-full h-screen overflow-hidden">
+    <ScrollFadeIn>
       <div className="absolute inset-0 m-auto flex flex-col justify-center">
         <div className="relative flex flex-col justify-center h-full items-center">
           <p className="text-8xl font-black">FEATURED WORKS</p>
@@ -9,6 +10,6 @@ export const FeaturedWorks = () => {
           <div>Hello</div>
         </div>
       </div>
-    </div>
+    </ScrollFadeIn>
   );
 };

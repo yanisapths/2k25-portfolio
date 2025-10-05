@@ -1,10 +1,11 @@
 import { Footer } from "@/components/home/Footer";
 import { BgElement } from "@/components/home/background/Background";
 import Chrome from "../effect/Chrome";
+import { ScrollFadeIn } from "../ScrollFadeIn";
 
 export default function Home() {
   return (
-    <div className="relative flex flex-col m-auto w-full h-screen overflow-hidden">
+    <ScrollFadeIn>
       <BgElement
         imgSrc="/images/home/element1.webp"
         className="absolute -top-[15%] -left-[15%] lg:-top-[10%] lg:-left-[10%]"
@@ -25,6 +26,6 @@ export default function Home() {
         </div>
       </div>
       <Footer />
-    </div>
+    </ScrollFadeIn>
   );
 }
