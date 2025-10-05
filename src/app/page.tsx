@@ -5,10 +5,11 @@ import { FeaturedWorks } from "@/components/home/featured-works/page";
 import Home from "@/components/home/Home";
 import { Overview } from "@/components/home/my-space/Overview";
 import { LoadingSplash } from "@/components/home/splash-screen/SplashScreen";
+import { Footer } from "@/components/navigation/footer";
 import { Header } from "@/components/navigation/header";
 import { Leva } from "leva";
-import { useState } from "react";
 import dynamic from "next/dynamic";
+import { useState } from "react";
 
 const StarField = dynamic(
   () => import("@/components/home/background/StarField"),
@@ -27,7 +28,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="scroll-smooth">
+    <div className="scroll-smooth pointer-events-none">
       <Leva collapsed hidden={true} />
       {isLoading && (
         <LoadingSplash
@@ -36,22 +37,26 @@ export default function HomePage() {
         />
       )}
       {!isLoading && (
-        <div
-          className={`${
-            isZooming ? "animate-zoom-in" : ""
-          } pointer-events-none flex flex-col h-auto w-screen items-center justify-center`}
-        >
-          <Header />
-          <div className="fixed inset-0">
-            <StarField />
-            <Background />
-            <Noise />
+        <div>
+          <div
+            className={`${
+              isZooming ? "animate-zoom-in" : ""
+            } flex flex-col h-auto w-screen items-center justify-center`}
+          >
+            <div className="fixed inset-0">
+              <StarField />
+              <Background />
+              <Noise />
+            </div>
+            <Header />
+
+            <Home />
+
+            <Overview />
+
+            <FeaturedWorks />
           </div>
-          <Home />
-
-          <Overview />
-
-          <FeaturedWorks />
+          <Footer />
         </div>
       )}
     </div>

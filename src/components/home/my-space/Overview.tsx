@@ -14,7 +14,7 @@ export const Overview = () => {
   return (
     <div className="relative flex flex-col m-auto w-full h-screen overflow-hidden">
       <div className="absolute inset-0 m-auto flex flex-col justify-center">
-        <div className="relative flex justify-between h-full items-center">
+        <div className="relative flex justify-between  h-[80%] items-center">
           <p className="text-9xl font-black">MY SPACE</p>
           <div className="absolute inset-0 z-10 m-auto">
             <div className="flex flex-col m-auto justify-center items-center">
@@ -25,7 +25,7 @@ export const Overview = () => {
                   </p>
                 ))}
               </div>
-              <div className="w-[50vw] h-[50vh]">
+              <div className="w-[55vw] h-[50vh]">
                 <Saturn />
               </div>
               <div className="flex flex-col gap-8 justify-center items-center text-center">

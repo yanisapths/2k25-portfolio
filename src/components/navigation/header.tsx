@@ -20,7 +20,7 @@ export const Header = () => {
   // const [hours, minutes] = hm.split(":");
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50">
+    <div className="fixed top-0 left-0 right-0 pointer-events-auto z-[99]">
       <div className="flex m-auto max-w-screen-2xl items-center h-24">
         <Link href="/">
           <div className="flex items-center gap-2">
