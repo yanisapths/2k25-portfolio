@@ -15,7 +15,7 @@ export const Overview = () => {
   return (
     <ScrollFadeIn>
       <div className="absolute inset-0 m-auto flex flex-col justify-center">
-        <div className="relative flex justify-between  h-[80%] items-center">
+        <div className="relative flex justify-between h-[80%] items-center">
           <p className="text-9xl font-black">MY SPACE</p>
           <div className="absolute inset-0 z-10 m-auto">
             <div className="flex flex-col m-auto justify-center items-center">

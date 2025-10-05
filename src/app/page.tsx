@@ -3,6 +3,7 @@ import { Noise } from "@/components/effect/Noise";
 import { Background } from "@/components/home/background/Background";
 import { FeaturedWorks } from "@/components/home/featured-works/FeaturedWorks";
 import Home from "@/components/home/Home";
+import { Material } from "@/components/home/materials/Material";
 import { Overview } from "@/components/home/my-space/Overview";
 import { LoadingSplash } from "@/components/home/splash-screen/SplashScreen";
 import { Footer } from "@/components/navigation/footer";
@@ -21,7 +22,7 @@ const StarField = dynamic(
 );
 
 export default function HomePage() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
 
   const handleLoadComplete = () => {
@@ -29,7 +30,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="scroll-smooth pointer-events-none">
+    <div className="scroll-smooth">
       <Leva collapsed hidden={true} />
       {isLoading && (
         <LoadingSplash
@@ -49,6 +50,7 @@ export default function HomePage() {
               <Background />
               <Noise />
             </div>
+
             <Header />
 
             <Home />
@@ -56,6 +58,8 @@ export default function HomePage() {
             <Overview />
 
             <FeaturedWorks />
+
+            <Material />
           </div>
           <Footer />
         </div>

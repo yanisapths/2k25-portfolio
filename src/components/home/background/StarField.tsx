@@ -29,7 +29,7 @@ function FloatingParticles() {
 
 export default function StarField() {
   return (
-    <div className="h-screen w-full">
+    <div className="h-screen w-full pointer-events-none">
       <Canvas
         camera={{ position: [0, 0, 5], fov: 75 }}
         gl={{ antialias: true }}
