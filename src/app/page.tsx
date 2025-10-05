@@ -22,7 +22,7 @@ const StarField = dynamic(
 );
 
 export default function HomePage() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isZooming, setIsZooming] = useState(false);
 
   const handleLoadComplete = () => {
