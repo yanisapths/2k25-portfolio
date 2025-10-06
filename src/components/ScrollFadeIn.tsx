@@ -12,7 +12,7 @@ export const ScrollFadeIn = ({ children }: ScrollFadeInProps) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, ease: "easeOut" }}
       viewport={{ amount: 0.5 }}
-      className="relative flex flex-col m-auto w-full h-screen overflow-hidden"
+      className="relative flex flex-col m-auto w-full min-h-screen h-auto lg:h-screen overflow-hidden"
     >
       {children}
     </motion.div>

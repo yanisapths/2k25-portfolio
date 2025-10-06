@@ -11,7 +11,7 @@ import { Header } from "@/components/navigation/header";
 
 import { Leva } from "leva";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 const StarField = dynamic(
   () => import("@/components/home/background/StarField"),
@@ -38,30 +38,26 @@ export default function HomePage() {
           setIsZooming={setIsZooming}
         />
       )}
+
       {!isLoading && (
-        <div>
-          <div
-            className={`${
-              isZooming ? "animate-zoom-in" : ""
-            } flex flex-col h-auto w-screen items-center justify-center`}
-          >
-            <div className="fixed inset-0">
-              <StarField />
-              <Background />
-              <Noise />
-            </div>
-
-            <Header />
-
-            <Home />
-
-            <Overview />
-
-            <FeaturedWorks />
-
-            <Material />
+        <div
+          className={`${
+            isZooming ? "animate-zoom-in" : ""
+          } lg:flex lg:flex-col lg:h-auto lg:w-screen lg:items-center lg:justify-center`}
+        >
+          <div className="fixed inset-0">
+            <StarField />
+            <Background />
+            <Noise />
           </div>
-          <Footer />
+          <Header />
+          <Home />
+          <Overview />
+          <FeaturedWorks />
+          <Material />
+          <div>
+            <Footer />
+          </div>
         </div>
       )}
     </div>

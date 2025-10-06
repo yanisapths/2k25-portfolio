@@ -6,13 +6,13 @@ import { Card } from "./Card";
 
 export const Material = () => {
   return (
-    <ScrollFadeIn>
+    <div className="relative flex flex-col m-auto w-full min-h-screen h-auto lg:h-screen overflow-hidden">
       <div className="relative flex flex-col justify-center h-full items-center">
         <p className="text-6xl md:text-8xl lg:text-9xl font-black uppercase mb-16">
           CRAFT
         </p>
 
-        <div className="grid grid-cols-6 gap-6 w-full max-w-7xl px-4">
+        <div className="grid grid-cols-6 gap-6 w-full max-w-7xl px-8">
           {materials.slice(0, 3).map((material, i) => (
             <motion.div
               key={`mat_top_${i}`}
@@ -20,7 +20,7 @@ export const Material = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
             >
               <Card {...material} />
             </motion.div>
@@ -34,17 +34,17 @@ export const Material = () => {
                   ? "col-span-6 sm:col-span-4"
                   : "col-span-6 sm:col-span-2"
               }
-              // initial={{ opacity: 0, y: 50 }}
-              // whileInView={{ opacity: 1, y: 0 }}
-              // transition={{ duration: 0.6, delay: 0.3 + i * 0.15 }}
-              // viewport={{ once: true }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 + i * 0.15 }}
+              viewport={{ once: false }}
             >
               <Card {...material} />
             </motion.div>
           ))}
         </div>
       </div>
-    </ScrollFadeIn>
+    </div>
   );
 };
 

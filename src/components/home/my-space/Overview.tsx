@@ -16,7 +16,9 @@ export const Overview = () => {
     <ScrollFadeIn>
       <div className="absolute inset-0 m-auto flex flex-col justify-center">
         <div className="relative flex justify-between h-[80%] items-center">
-          <p className="text-9xl font-black">MY SPACE</p>
+          <p className="hidden md:block md:text-8xl text-9xl font-black">
+            MY SPACE
+          </p>
           <div className="absolute inset-0 z-10 m-auto">
             <div className="flex flex-col m-auto justify-center items-center">
               <div className="flex flex-col gap-8 justify-center items-center text-center">
@@ -26,7 +28,7 @@ export const Overview = () => {
                   </p>
                 ))}
               </div>
-              <div className="w-[55vw] h-[50vh]">
+              <div className="w-[100%] md:w-[55vw] h-[40vh] md:h-[50vh]">
                 <Saturn />
               </div>
               <div className="flex flex-col gap-8 justify-center items-center text-center">
@@ -38,7 +40,9 @@ export const Overview = () => {
               </div>
             </div>
           </div>
-          <p className="text-9xl font-black">MY SPACE</p>
+          <p className="hidden md:block md:text-8xl text-9xl font-black">
+            MY SPACE
+          </p>
         </div>
       </div>
     </ScrollFadeIn>

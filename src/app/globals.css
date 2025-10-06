@@ -15,6 +15,13 @@ body.inspect * {
   outline: 1px solid var(--inspect-color) !important;
 }
 
+@theme {
+  --breakpoint-sm: 481px;
+  --breakpoint-md: 769px;
+  --breakpoint-lg: 1280px;
+  --breakpoint-xl: 1536px;
+}
+
 @theme inline {
   --font-montserrat: var(--font-montserrat);
   --font-climate-crisis: "Climate Crisis", sans-serif;

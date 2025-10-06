@@ -1,4 +1,3 @@
-import { ScrollFadeIn } from "@/components/ScrollFadeIn";
 import React, { useRef } from "react";
 import Card from "./Card";
 import { useScroll } from "motion/react";

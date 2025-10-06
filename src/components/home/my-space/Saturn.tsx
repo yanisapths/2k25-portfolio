@@ -40,7 +40,7 @@ function SaturnModel() {
   const { scrollYProgress } = useScroll();
 
   const rotateY = useTransform(scrollYProgress, [0, 1], [0, 0.4]);
-  const rotateX = useTransform(scrollYProgress, [0, 1], [-0.7, 1]);
+  const rotateX = useTransform(scrollYProgress, [0, 1], [-0.3, 1]);
 
   useFrame(() => {
     if (group.current) {

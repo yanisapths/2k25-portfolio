@@ -11,7 +11,7 @@ export const Footer = () => {
 
   return (
     <footer className="absolute max-w-screen mx-auto w-full inset-x-0 justify-center py-4 z-[99] pointer-events-auto">
-      <div className="min-h-[50vh] md:min-h-[70vh] my-auto justify-center flex flex-col px-6 md:px-24">
+      <div className="min-h-[70vh] my-auto justify-center flex flex-col px-6 md:px-24">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
