@@ -1,3 +1,4 @@
+export const archiveLink = "https://yanisa-archive.vercel.app";
 export const sitemap = [
   {
     label: "WORKS",
@@ -9,6 +10,7 @@ export const sitemap = [
   },
   {
     label: "ARCHIVE",
-    href: "/archive",
+    href: `${archiveLink}`,
+    isExternal: true,
   },
 ];

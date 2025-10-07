@@ -57,7 +57,12 @@ export const Header = () => {
             yanisa21@live.com
           </a>
           {sitemap.map((item) => (
-            <Link href={item.href} key={item.label} className="text-md">
+            <Link
+              href={item.href}
+              key={item.label}
+              target={item.isExternal ? "_blank" : undefined}
+              className="text-md"
+            >
               {item.label}
             </Link>
           ))}
@@ -99,6 +104,7 @@ export const Header = () => {
           <div className="flex flex-col my-auto h-full -mt-20 justify-center items-center py-4 gap-20 text-white">
             {sitemap.map((item) => (
               <Link
+                target={item.isExternal ? "_blank" : undefined}
                 key={item.label}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}

@@ -3,6 +3,7 @@ import { ScrollFadeIn } from "@/components/ScrollFadeIn";
 import { motion } from "framer-motion";
 import React from "react";
 import { Card } from "./Card";
+import { archiveLink } from "@/components/navigation/sitemap";
 
 export const Material = () => {
   return (
@@ -57,21 +58,21 @@ const materials = [
   {
     title: "3D Card with Custom Image",
     src: "/video/materials/card.mp4",
-    link: "#",
+    link: `${archiveLink}?work=4`,
   },
   {
     title: "GSAP Scroll with 3D Model",
     src: "/video/materials/whale.mp4",
-    link: "#",
+    link: `${archiveLink}?work=2`,
   },
   {
     title: "Infinite Zoom Space",
     src: "/video/materials/zoom-space.mp4",
-    link: "#",
+    link: `${archiveLink}?work=3`,
   },
   {
     title: "Clear Texture with Text",
     src: "/video/materials/clear.mp4",
-    link: "#",
+    link: `${archiveLink}?work=5`,
   },
 ];
