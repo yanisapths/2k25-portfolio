@@ -11,7 +11,7 @@ export const FeaturedWorks = () => {
   });
 
   return (
-    <div className="relative flex flex-col justify-center h-full items-center">
+    <div className="pointer-events-auto relative flex flex-col justify-center h-full items-center">
       <div ref={container}>
         {projects.map((project, i) => {
           const targetScale = 1 - (projects.length - i) * 0.05;

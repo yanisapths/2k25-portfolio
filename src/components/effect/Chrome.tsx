@@ -96,7 +96,7 @@ const Chrome = ({ text }: ChromeProps) => {
         <HueSaturation hue={0} saturation={config?.saturation as any} />
         <TiltShift2 blur={0} />
       </EffectComposer>
-      <OrbitControls
+      {/* <OrbitControls
         enableRotate={true}
         enableZoom={false}
         minDistance={4.5}
@@ -107,7 +107,7 @@ const Chrome = ({ text }: ChromeProps) => {
         maxAzimuthAngle={0.1}
         enableDamping={true}
         dampingFactor={0.05}
-      />
+      /> */}
     </Canvas>
   );
 };

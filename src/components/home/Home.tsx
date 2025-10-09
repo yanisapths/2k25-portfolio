@@ -12,13 +12,14 @@ export default function Home() {
       />
       <BgElement
         imgSrc="/images/home/element2.webp"
-        className="absolute -bottom-[15%] -right-[40%] lg:bottom-[5%] lg:-right-[25%]"
+        className="absolute -bottom-[15%] -right-[40%] lg:-bottom-[15%] lg:-right-[25%]"
       />
 
       <div className="absolute inset-0 m-auto flex flex-col justify-center">
         <div className="h-auto w-fit">
-          <div className="hidden md:block">
-            <Chrome text="Yanisa Poongthaisong" />
+          <div className="hidden md:flex md:flex-col">
+            <Chrome text="Yanisa" />
+            <Chrome text="Poongthaisong" />
           </div>
           <div className="block md:hidden">
             <Chrome text="Yanisa" />
