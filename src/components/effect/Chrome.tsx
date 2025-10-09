@@ -37,7 +37,14 @@ const configVaraints = {
 };
 const Chrome = ({ text }: ChromeProps) => {
   const isDev = process.env.NODE_ENV === "development";
-  const config = isDev ? useControls(configVaraints) : (configVaraints as any);
+  const config = isDev
+    ? useControls(configVaraints)
+    : Object.fromEntries(
+        Object.entries(configVaraints).map(([k, v]) => [
+          k,
+          typeof v === "object" && "value" in v ? v.value : v,
+        ])
+      );
 
   return (
     <Canvas
