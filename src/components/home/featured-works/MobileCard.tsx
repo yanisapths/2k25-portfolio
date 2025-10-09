@@ -1,4 +1,4 @@
-import { ExternalLinkButton } from "@/components/core/external-link-button";
+"use client";
 import React from "react";
 import { CardProps, StackIcon } from "./Card";
 import Image from "next/image";
@@ -6,6 +6,7 @@ import { motion, MotionValue } from "motion/react";
 
 interface MobileCardProps extends CardProps {
   imageScale: MotionValue<number>;
+  handleClick: VoidFunction;
 }
 
 export const MobileCard = ({
@@ -13,11 +14,16 @@ export const MobileCard = ({
   description,
   src,
   stacks,
+  link,
   timeline,
   imageScale,
+  handleClick,
 }: MobileCardProps) => {
   return (
-    <div className="flex flex-col gap-4">
+    <div
+      className={`${link != "cursor-pointer" ? "" : ""} flex flex-col gap-4`}
+      onClick={handleClick}
+    >
       <h2 className="text-2xl font-black">{title}</h2>
       <p className="text-white/60 text-xs -mt-2">{timeline}</p>
       <div className="relative">
@@ -52,7 +58,7 @@ export const MobileCard = ({
           </div>
         ))}
       </div>
-      <div className="absolute bottom-6">
+      {/* <div className="absolute bottom-6">
         <div className="cursor-pointer group relative min-w-[282px] w-full bg-slate-500 inline-flex overflow-hidden rounded-xl p-[0.5px]">
           <span className="absolute z-0 inset-[-1000%] animate-[spin_6s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff5d_0%,#0000005b_25%,#9ca3af_50%,#d1d5db82_75%,#ffffff56_100%)]" />
 
@@ -63,7 +69,7 @@ export const MobileCard = ({
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

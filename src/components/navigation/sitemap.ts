@@ -1,13 +1,15 @@
 export const archiveLink = "https://yanisa-archive.vercel.app";
+export const archiveExperimentLink =
+  "https://yanisa-archive.vercel.app/experiments";
 export const sitemap = [
-  {
-    label: "WORKS",
-    href: "/works",
-  },
-  {
-    label: "ABOUT",
-    href: "/about",
-  },
+  // {
+  //   label: "WORKS",
+  //   href: "/works",
+  // },
+  // {
+  //   label: "ABOUT",
+  //   href: "/about",
+  // },
   {
     label: "ARCHIVE",
     href: `${archiveLink}`,

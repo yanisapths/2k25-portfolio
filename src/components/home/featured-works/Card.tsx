@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import { useRef } from "react";
 import { MobileCard } from "./MobileCard";
+import { useRouter } from "next/navigation";
 
 export interface CardProps {
   title: string;
@@ -38,7 +39,16 @@ const Card = ({
     target: container,
     offset: ["start end", "start start"],
   });
+  const router = useRouter();
+  const handleClick = () => {
+    if (!link) return;
 
+    if (link.startsWith("http://") || link.startsWith("https://")) {
+      window.open(link, "_blank", "noopener,noreferrer");
+    } else {
+      router.push(link);
+    }
+  };
   const imageScale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
   const scale = useTransform(progress, range, [1, targetScale]);
 
@@ -50,13 +60,14 @@ const Card = ({
       {i == 0 && (
         <div className="absolute top-28 z-50 flex justify-between mx-auto w-full">
           <div className="text-white/75 flex justify-between items-center m-auto w-full">
-            <div>Featured Works</div>
-            <div>View all projects</div>
+            {/* <div>Featured Works</div>
+            <div>View all projects</div> */}
           </div>
         </div>
       )}
       {lg ? (
         <motion.div
+          onClick={handleClick}
           className="relative flex flex-col h-[600px] w-[1200px] rounded-2xl py-8 px-20 origin-top backdrop-blur-md"
           style={{
             backgroundColor: color ? color : "rgba(0, 0, 0, 0.4)",
@@ -66,7 +77,11 @@ const Card = ({
             scale,
           }}
         >
-          <div className="flex justify-between my-auto">
+          <div
+            className={`${
+              link != "" ? "cursor-pointer" : ""
+            } flex justify-between my-auto`}
+          >
             <div className="w-1/2">
               <h2 className="font-black text-3xl">{title}</h2>
               <p className="text-white/60 mt-4 text-lg">{timeline}</p>
@@ -106,7 +121,7 @@ const Card = ({
         </motion.div>
       ) : (
         <motion.div
-          className="relative flex flex-col h-[510px] w-[340px] rounded-2xl p-6 origin-top backdrop-blur-md"
+          className="relative flex flex-col h-[450px] w-[340px] rounded-2xl p-6 origin-top backdrop-blur-md"
           style={{
             backgroundColor: color ? color : "rgba(0, 0, 0, 0.4)",
             boxShadow: "inset 0px 0px 10px 1px rgba(255, 255, 255, 0.25)",
@@ -124,6 +139,7 @@ const Card = ({
             link={link}
             i={i}
             imageScale={imageScale}
+            handleClick={handleClick}
           />
         </motion.div>
       )}

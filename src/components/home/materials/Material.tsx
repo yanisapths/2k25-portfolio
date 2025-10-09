@@ -1,9 +1,8 @@
 "use client";
-import { ScrollFadeIn } from "@/components/ScrollFadeIn";
 import { motion } from "framer-motion";
 import React from "react";
 import { Card } from "./Card";
-import { archiveLink } from "@/components/navigation/sitemap";
+import { archiveExperimentLink } from "@/components/navigation/sitemap";
 
 export const Material = () => {
   return (
@@ -52,27 +51,27 @@ export const Material = () => {
 const materials = [
   {
     title: "Hologram Business Card",
-    src: "/video/materials/whale.mp4",
-    link: "#",
+    src: "/video/materials/holocard.mp4",
+    link: `${archiveExperimentLink}/6`,
   },
   {
     title: "3D Card with Custom Image",
     src: "/video/materials/card.mp4",
-    link: `${archiveLink}?work=4`,
+    link: `${archiveExperimentLink}/4`,
   },
   {
     title: "GSAP Scroll with 3D Model",
     src: "/video/materials/whale.mp4",
-    link: `${archiveLink}?work=2`,
+    link: `${archiveExperimentLink}/2`,
   },
   {
     title: "Infinite Zoom Space",
     src: "/video/materials/zoom-space.mp4",
-    link: `${archiveLink}?work=3`,
+    link: `${archiveExperimentLink}/3`,
   },
   {
     title: "Clear Texture with Text",
     src: "/video/materials/clear.mp4",
-    link: `${archiveLink}?work=5`,
+    link: `${archiveExperimentLink}/5`,
   },
 ];

@@ -39,7 +39,7 @@ const projects = [
     description:
       "A platform that helps physical therapy clinics and their customers by making the appointment process easier and more efficient. Customers can use the app to find clinics, book appointments, and see pricing.",
     src: "1.png",
-    link: "/",
+    link: "",
     stacks: ["next", "express", "mongo"],
   },
   {
@@ -48,7 +48,7 @@ const projects = [
     description:
       "Showcase Lampang through local eyes—connecting visitors with authentic places to explore, eat, drink, and stay.",
     src: "2.png",
-    link: "/",
+    link: "https://lampang.vercel.app",
     stacks: ["next", "google-cloud"],
   },
   {
@@ -58,7 +58,7 @@ const projects = [
       "The trivia selection to help you decide where to go for food nearby based on preferences.",
 
     src: "3.png",
-    link: "/",
+    link: "https://lampang.vercel.app/dinner-plan",
     stacks: ["next", "aws", "google-place", "lovable", "xmcp"],
   },
 ];
