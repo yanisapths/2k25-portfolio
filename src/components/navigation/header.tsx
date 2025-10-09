@@ -7,12 +7,13 @@ import { motion, useAnimation } from "motion/react";
 import { sitemap } from "./sitemap";
 import { useScrollDirection } from "@/app-hooks/use-scroll-direction";
 import { Menu, X } from "lucide-react";
+import { useBreakpoints } from "@/app-hooks/use-breakpoints";
 
 export const Header = () => {
   const controls = useAnimation();
   const isVisible = useScrollDirection(50);
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const { lg } = useBreakpoints();
   useEffect(() => {
     controls.start({
       y: isVisible ? 0 : -100,
@@ -21,17 +22,17 @@ export const Header = () => {
     });
   }, [isVisible, controls]);
 
-  // const { weather } = useCurrentWeatherData();
-  // const currentTime = weather.data?.current?.time;
-  // const formatTime = currentTime
-  //   ? currentTime.toLocaleTimeString([], {
-  //       hour: "2-digit",
-  //       minute: "2-digit",
-  //       hour12: true,
-  //     })
-  //   : "--:--";
-  // const [hm, ampm] = formatTime.split(" ");
-  // const [hours, minutes] = hm.split(":");
+  const { weather } = useCurrentWeatherData();
+  const currentTime = weather.data?.current?.time;
+  const formatTime = currentTime
+    ? currentTime.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      })
+    : "--:--";
+  const [hm, ampm] = formatTime.split(" ");
+  const [hours, minutes] = hm.split(":");
 
   return (
     <motion.header
@@ -41,51 +42,64 @@ export const Header = () => {
       <div
         className={`${
           menuOpen ? "bg-black md:bg-transparent" : "bg-transparent"
-        } px-6 md:px-0 flex justify-between m-auto max-w-screen-2xl items-center h-24`}
+        } px-6 md:px-24 flex justify-between m-auto max-w-screen-2xl items-center h-24`}
       >
         <Link href="/">
           <div className="flex items-center gap-2">
             <span className="uppercase font-climate-crisis text-md">
               Lampang
             </span>
-            {/* <Weather weatherCode={weather.data?.current?.weatherCode ?? 0} /> */}
+            {lg && (
+              <Weather weatherCode={weather.data?.current?.weatherCode ?? 0} />
+            )}
           </div>
         </Link>
 
         <div className="hidden md:flex items-center gap-20 ml-auto">
-          <a href="mailto:yanisa21@live.com" className="uppercase">
+          <a
+            href="mailto:yanisa21@live.com"
+            className="uppercase hover:text-gray-300"
+          >
             yanisa21@live.com
           </a>
-          {sitemap.map((item) => (
+          <a
+            href="/images/resume.pdf"
+            className="uppercase hover:text-gray-300"
+          >
+            CV/Resume
+          </a>
+          {sitemap.map((item: any) => (
             <Link
               href={item.href}
               key={item.label}
               target={item.isExternal ? "_blank" : undefined}
-              className="text-md"
+              className="text-md hover:text-gray-300"
             >
               {item.label}
             </Link>
           ))}
         </div>
-        {/* <div
-          className="flex items-center gap-2 ml-auto font-silkscreen font-semibold text-black text-xl"
-          style={{ WebkitTextStroke: "1px white" }}
-        >
-          <span>{hours}</span>
-          <motion.span
-            animate={{
-              opacity: [0.5, 1, 0.5],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 1.2,
-            }}
+        {lg && (
+          <div
+            className="flex items-center gap-2 ml-auto font-silkscreen font-semibold text-black text-xl"
+            style={{ WebkitTextStroke: "1px white" }}
           >
-            :
-          </motion.span>
-          <span>{minutes}</span>
-          <span>{ampm}</span>
-        </div> */}
+            <span>{hours}</span>
+            <motion.span
+              animate={{
+                opacity: [0.5, 1, 0.5],
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 1.2,
+              }}
+            >
+              :
+            </motion.span>
+            <span>{minutes}</span>
+            <span>{ampm}</span>
+          </div>
+        )}
         <button
           onClick={() => setMenuOpen((prev) => !prev)}
           className="md:hidden text-white p-2 rounded focus:outline-none focus:ring-none cursor-pointer"
@@ -102,7 +116,7 @@ export const Header = () => {
           className="md:hidden h-screen bg-black"
         >
           <div className="flex flex-col my-auto h-full -mt-20 justify-center items-center py-4 gap-20 text-white">
-            {sitemap.map((item) => (
+            {sitemap.map((item: any) => (
               <Link
                 target={item.isExternal ? "_blank" : undefined}
                 key={item.label}
@@ -113,6 +127,12 @@ export const Header = () => {
                 {item.label}
               </Link>
             ))}
+            <a
+              href="/images/resume.pdf"
+              className="text-2xl font-black uppercase hover:text-gray-300"
+            >
+              CV/Resume
+            </a>
             <a
               href="mailto:yanisa21@live.com"
               onClick={() => setMenuOpen(false)}

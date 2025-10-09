@@ -15,4 +15,5 @@ export const sitemap = [
     href: `${archiveLink}`,
     isExternal: true,
   },
+  ,
 ];
