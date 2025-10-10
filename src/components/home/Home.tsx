@@ -12,7 +12,7 @@ export default function Home() {
       />
       <BgElement
         imgSrc="/images/home/element2.webp"
-        className="absolute -bottom-[15%] -right-[40%] lg:-bottom-[15%] lg:-right-[25%]"
+        className="absolute -bottom-[15%] -right-[40%] lg:bottom-0 lg:-right-[25%]"
       />
 
       <div className="absolute inset-0 m-auto flex flex-col justify-center">

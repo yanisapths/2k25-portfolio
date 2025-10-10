@@ -113,9 +113,9 @@ export const Header = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden h-screen bg-black"
+          className="md:hidden bg-black"
         >
-          <div className="flex flex-col my-auto h-full -mt-20 justify-center items-center py-4 gap-20 text-white">
+          <div className="flex flex-col -mt-20 h-screen justify-center items-center gap-20 text-white">
             {sitemap.map((item: any) => (
               <Link
                 target={item.isExternal ? "_blank" : undefined}

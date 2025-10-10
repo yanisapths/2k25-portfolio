@@ -43,7 +43,7 @@ export default function HomePage() {
         <div
           className={`${
             isZooming ? "animate-zoom-in" : ""
-          } pointer-events-none lg:flex lg:flex-col lg:h-auto lg:w-screen lg:items-center lg:justify-center`}
+          } lg:flex lg:flex-col lg:h-auto lg:w-screen lg:items-center lg:justify-center`}
         >
           <div className="fixed inset-0">
             <StarField />
