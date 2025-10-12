@@ -6,8 +6,6 @@ import Link from "next/link";
 import { GithubIcon } from "../icons/github";
 import { motion } from "motion/react";
 export const Footer = () => {
-  const currentYear = dayjs().year();
-
   return (
     <footer className="absolute max-w-screen mx-auto w-full inset-x-0 justify-center py-4 z-[99] pointer-events-auto">
       <div className="min-h-[70vh] my-auto justify-center flex flex-col px-6 md:px-24">
@@ -39,11 +37,19 @@ export const Footer = () => {
         </motion.div>
       </div>
 
-      <div className="max-w-screen-2xl mx-auto w-full flex md:flex-row flex-col text-center justify-center z-50 lg:justify-between text-white">
-        <p>© {currentYear} All Rights Reserved.</p>
-
-        <p>DESIGNED AND DEVELOPED BY YANISA P.</p>
-      </div>
+      <CopyrightFooter />
     </footer>
+  );
+};
+
+export const CopyrightFooter = () => {
+  const currentYear = dayjs().year();
+
+  return (
+    <div className="max-w-screen-2xl mx-auto py-4 w-full flex md:flex-row flex-col text-center justify-center z-50 lg:justify-between text-white">
+      <p>© {currentYear} All Rights Reserved.</p>
+
+      <p>DESIGNED AND DEVELOPED BY YANISA P.</p>
+    </div>
   );
 };

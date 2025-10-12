@@ -1,0 +1,78 @@
+"use client";
+import { GlassDock } from "@/components/effect/GlassDock";
+import { Noise } from "@/components/effect/Noise";
+import { Background } from "@/components/home/background/Background";
+import StarField from "@/components/home/background/StarField";
+import { GithubIcon } from "@/components/icons/github";
+import { Instagram } from "@/components/icons/instagram";
+import { Linkedin } from "@/components/icons/linkedin";
+import { CopyrightFooter, Footer } from "@/components/navigation/footer";
+import { Header } from "@/components/navigation/header";
+import { Mail } from "lucide-react";
+import Link from "next/link";
+import React from "react";
+
+const AboutPage = () => {
+  return (
+    <div className="fixed inset-0">
+      <StarField />
+      <Background />
+      <Noise />
+
+      <Header />
+      <div className="absolute inset-0 m-auto flex flex-col justify-center">
+        <div className="relative flex flex-col gap-8 md:text-2xl max-w-screen-md justify-center h-full m-auto p-6 mt-10 lg:mt-0 text-xl">
+          <div>
+            Hi, I'm Yanisa ☺︎ <br />
+            I'm a full-stack engineer based in Bangkok and Lampang, Thailand.
+            Currently, I'm exploring 3D website development and drawing
+            inspiration from many creative artists who craft fascinating
+            software and digital art pieces.
+          </div>
+          <div>
+            In my free time, I love working on creative side
+            projects—experimenting with motion, animation, and 3D effects to
+            make websites visually engaging and eventually turn this passion
+            into my professional career.
+          </div>
+          <div>
+            Off-screen, you'll often find me running, playing tennis, or
+            training Muay Thai.
+          </div>
+          <div>
+            If you have a project in mind, my inbox is always open. <br />
+            Let's build together!
+          </div>
+          <div className="flex justify-start items-center gap-4">
+            <Link
+              target="_blank"
+              href="https://www.linkedin.com/in/yanisa-poongthaisong"
+            >
+              <div className="cursor-pointer hover:bg-white/10 border rounded-full border-white/20 p-2">
+                <Linkedin className="text-white" size={24} color="white" />
+              </div>
+            </Link>
+            <Link target="_blank" href="https://github.com/yanisapths">
+              <div className="cursor-pointer hover:bg-white/10 border rounded-full border-white/20 p-2">
+                <GithubIcon className="text-white" size={24} />
+              </div>
+            </Link>
+            <Link target="_blank" href="https://www.instagram.com/yani.mmmx/">
+              <div className="cursor-pointer hover:bg-white/10 border rounded-full border-white/20 p-2">
+                <Instagram className="text-white" size={24} color="white" />
+              </div>
+            </Link>
+            <Link href="mailto:yanisa21@live.com">
+              <div className="cursor-pointer hover:bg-white/10 border rounded-full border-white/20 p-2">
+                <Mail className="text-white" size={24} />
+              </div>
+            </Link>
+          </div>
+        </div>
+        <CopyrightFooter />
+      </div>
+    </div>
+  );
+};
+
+export default AboutPage;

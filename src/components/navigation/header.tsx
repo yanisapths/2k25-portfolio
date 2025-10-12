@@ -56,23 +56,30 @@ export const Header = () => {
           }}
         >
           <div className="flex items-center gap-2 cursor-pointer">
-            <div
-              style={{
-                background: "rgba(255, 255, 255, 0.02)",
-                opacity: "0.72",
-                boxShadow: "inset 0px 0px 10px 1px rgba(255, 255, 255, 0.25)",
-                backdropFilter: "blur(20px)",
-              }}
-              className="relative rounded-full w-12 h-12 flex flex-col items-center justify-center m-auto"
-            >
-              <span
-                className={`${
-                  menuOpen ? "text-black " : "text-white"
-                } font-unifraktur-cook uppercase text-2xl`}
+            {!lg ? (
+              <div
+                style={{
+                  background: "rgba(255, 255, 255, 0.02)",
+                  opacity: "0.72",
+                  boxShadow: "inset 0px 0px 10px 1px rgba(255, 255, 255, 0.25)",
+                  backdropFilter: "blur(20px)",
+                }}
+                className="relative rounded-full mt-4 w-12 h-12 flex flex-col items-center justify-center m-auto"
               >
-                Y
+                <span
+                  className={`${
+                    menuOpen ? "text-black " : "text-white"
+                  } font-unifraktur-cook uppercase text-2xl`}
+                >
+                  Y
+                </span>
+              </div>
+            ) : (
+              <span className="uppercase font-climate-crisis text-md">
+                Lampang
               </span>
-            </div>
+            )}
+
             {lg && (
               <Weather weatherCode={weather.data?.current?.weatherCode ?? 0} />
             )}
@@ -85,12 +92,6 @@ export const Header = () => {
             className="uppercase hover:text-gray-300"
           >
             yanisa21@live.com
-          </a>
-          <a
-            href="/images/resume.pdf"
-            className="uppercase hover:text-gray-300"
-          >
-            CV/Resume
           </a>
           {sitemap.map((item: any) => (
             <Link
@@ -128,9 +129,9 @@ export const Header = () => {
           onClick={() => setMenuOpen((prev) => !prev)}
           className={`${
             menuOpen ? "text-black" : "text-white"
-          } md:hidden p-2 rounded focus:outline-none focus:ring-none cursor-pointer`}
+          } md:hidden p-2 rounded mt-4 focus:outline-none focus:ring-none cursor-pointer`}
         >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          {menuOpen ? <X size={24} className="" /> : <Menu size={24} />}
         </button>
       </div>
       {menuOpen && (
@@ -139,7 +140,7 @@ export const Header = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden bg-[#f8f8f8] -mt-20 h-[45vh] m-2 rounded-2xl"
+          className="md:hidden bg-[#f8f8f8] -mt-16 min-h-[55vh] m-2 rounded-2xl"
         >
           <div className="flex flex-col pt-24 justify-center items-center gap-12 text-black">
             {sitemap.map((item: any) => (
@@ -154,12 +155,6 @@ export const Header = () => {
               </Link>
             ))}
             <a
-              href="/images/resume.pdf"
-              className="text-2xl font-black uppercase hover:text-gray-300"
-            >
-              CV/Resume
-            </a>
-            <a
               href="mailto:yanisa21@live.com"
               onClick={() => setMenuOpen(false)}
               className="uppercase hover:text-gray-300"
@@ -169,35 +164,30 @@ export const Header = () => {
           </div>
           <div className="flex mt-10 m-auto justify-center items-center max-w-48">
             {" "}
-            <div
-              onClick={() =>
-                router.push("https://www.linkedin.com/in/yanisa-poongthaisong")
-              }
+            <Link
+              target="_blank"
+              href="https://www.linkedin.com/in/yanisa-poongthaisong"
               className="cursor-pointer hover:bg-black/5 border rounded-full w-10 h-10 flex flex-col items-center justify-center m-auto border-black/40"
             >
               <Linkedin />
-            </div>
-            <div
-              onClick={() => router.push("https://github.com/yanisapths")}
+            </Link>
+            <Link
+              target="_blank"
+              href="https://github.com/yanisapths"
               className="cursor-pointer hover:bg-black/5 border rounded-full w-10 h-10 flex flex-col items-center justify-center m-auto border-black/40"
             >
               <GithubIcon color="black" />
-            </div>
-            <div
-              onClick={() =>
-                router.push("https://www.instagram.com/yani.mmmx/")
-              }
-              className="cursor-pointer hover:bg-black/5  border rounded-full w-10 h-10 flex flex-col items-center justify-center m-auto border-black/40"
+            </Link>
+            <Link
+              target="_blank"
+              href="https://www.instagram.com/yani.mmmx/"
+              className="cursor-pointer hover:bg-black/5 border rounded-full w-10 h-10 flex flex-col items-center justify-center m-auto border-black/40"
             >
               <Instagram color="black" />
-            </div>
+            </Link>
           </div>
         </motion.nav>
       )}
     </motion.header>
   );
-};
-
-const ContactSocialMedia = () => {
-  return <div></div>;
 };
