@@ -3,6 +3,7 @@ import {
   Clicker_Script,
   Montserrat,
   Silkscreen,
+  UnifrakturCook,
 } from "next/font/google";
 
 export const climateCrisis = Climate_Crisis({
@@ -25,4 +26,10 @@ export const silkscreen = Silkscreen({
   variable: "--font-silkscreen",
   subsets: ["latin"],
   weight: ["400", "700"],
+});
+
+export const unifrakturCook = UnifrakturCook({
+  variable: "--font-unifraktur-cook",
+  subsets: ["latin"],
+  weight: ["700"],
 });

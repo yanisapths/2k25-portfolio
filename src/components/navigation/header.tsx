@@ -8,12 +8,17 @@ import { sitemap } from "./sitemap";
 import { useScrollDirection } from "@/app-hooks/use-scroll-direction";
 import { Menu, X } from "lucide-react";
 import { useBreakpoints } from "@/app-hooks/use-breakpoints";
+import { useRouter } from "next/navigation";
+import { Linkedin } from "../icons/linkedin";
+import { GithubIcon } from "../icons/github";
+import { Instagram } from "../icons/instagram";
 
 export const Header = () => {
   const controls = useAnimation();
   const isVisible = useScrollDirection(50);
   const [menuOpen, setMenuOpen] = useState(false);
   const { lg } = useBreakpoints();
+  const router = useRouter();
   useEffect(() => {
     controls.start({
       y: isVisible ? 0 : -100,
@@ -42,18 +47,37 @@ export const Header = () => {
       <div
         className={`${
           menuOpen ? "bg-black md:bg-transparent" : "bg-transparent"
-        } px-6 md:px-24 flex justify-between m-auto max-w-screen-2xl items-center h-24`}
+        } px-6 md:px-24 flex justify-between m-auto max-w-screen-2xl items-center h-20`}
       >
-        <Link href="/">
-          <div className="flex items-center gap-2">
-            <span className="uppercase font-climate-crisis text-md">
-              Lampang
-            </span>
+        <div
+          onClick={() => {
+            router.push("/");
+            setMenuOpen(false);
+          }}
+        >
+          <div className="flex items-center gap-2 cursor-pointer">
+            <div
+              style={{
+                background: "rgba(255, 255, 255, 0.02)",
+                opacity: "0.72",
+                boxShadow: "inset 0px 0px 10px 1px rgba(255, 255, 255, 0.25)",
+                backdropFilter: "blur(20px)",
+              }}
+              className="relative rounded-full w-12 h-12 flex flex-col items-center justify-center m-auto"
+            >
+              <span
+                className={`${
+                  menuOpen ? "text-black " : "text-white"
+                } font-unifraktur-cook uppercase text-2xl`}
+              >
+                Y
+              </span>
+            </div>
             {lg && (
               <Weather weatherCode={weather.data?.current?.weatherCode ?? 0} />
             )}
           </div>
-        </Link>
+        </div>
 
         <div className="hidden md:flex items-center gap-20 ml-auto">
           <a
@@ -102,7 +126,9 @@ export const Header = () => {
         )}
         <button
           onClick={() => setMenuOpen((prev) => !prev)}
-          className="md:hidden text-white p-2 rounded focus:outline-none focus:ring-none cursor-pointer"
+          className={`${
+            menuOpen ? "text-black" : "text-white"
+          } md:hidden p-2 rounded focus:outline-none focus:ring-none cursor-pointer`}
         >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -113,9 +139,9 @@ export const Header = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden bg-black"
+          className="md:hidden bg-[#f8f8f8] -mt-20 h-[45vh] m-2 rounded-2xl"
         >
-          <div className="flex flex-col -mt-20 h-screen justify-center items-center gap-20 text-white">
+          <div className="flex flex-col pt-24 justify-center items-center gap-12 text-black">
             {sitemap.map((item: any) => (
               <Link
                 target={item.isExternal ? "_blank" : undefined}
@@ -141,8 +167,37 @@ export const Header = () => {
               yanisa21@live.com
             </a>
           </div>
+          <div className="flex mt-10 m-auto justify-center items-center max-w-48">
+            {" "}
+            <div
+              onClick={() =>
+                router.push("https://www.linkedin.com/in/yanisa-poongthaisong")
+              }
+              className="cursor-pointer hover:bg-black/5 border rounded-full w-10 h-10 flex flex-col items-center justify-center m-auto border-black/40"
+            >
+              <Linkedin />
+            </div>
+            <div
+              onClick={() => router.push("https://github.com/yanisapths")}
+              className="cursor-pointer hover:bg-black/5 border rounded-full w-10 h-10 flex flex-col items-center justify-center m-auto border-black/40"
+            >
+              <GithubIcon color="black" />
+            </div>
+            <div
+              onClick={() =>
+                router.push("https://www.instagram.com/yani.mmmx/")
+              }
+              className="cursor-pointer hover:bg-black/5  border rounded-full w-10 h-10 flex flex-col items-center justify-center m-auto border-black/40"
+            >
+              <Instagram color="black" />
+            </div>
+          </div>
         </motion.nav>
       )}
     </motion.header>
   );
+};
+
+const ContactSocialMedia = () => {
+  return <div></div>;
 };

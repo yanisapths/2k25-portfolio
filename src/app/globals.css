@@ -27,12 +27,17 @@ body.inspect * {
   --font-climate-crisis: "Climate Crisis", sans-serif;
   --font-clicker-script: "Clicker Script", cursive;
   --font-silkscreen: "Silkscreen", cursive;
+  --font-unifraktur-cook: "UnifrakturCook", cursive;
 }
 
 body {
   background: black;
   color: white;
   font-family: var(--font-montserrat);
+}
+
+.font-unifraktur-cook {
+  font-family: var(--font-unifraktur-cook);
 }
 
 .font-climate-crisis {
