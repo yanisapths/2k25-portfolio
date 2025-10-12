@@ -14,14 +14,16 @@ import React from "react";
 
 const AboutPage = () => {
   return (
-    <div className="fixed inset-0">
-      <StarField />
-      <Background />
-      <Noise />
-
-      <Header />
-      <div className="absolute inset-0 m-auto flex flex-col justify-center">
-        <div className="relative flex flex-col gap-8 md:text-2xl max-w-screen-md justify-center h-full m-auto p-6 mt-10 lg:mt-0 text-xl">
+    <div className="scroll-smooth">
+      <div className="lg:flex lg:flex-col lg:h-auto lg:w-screen lg:items-center lg:justify-center">
+        {" "}
+        <div className="fixed inset-0">
+          <StarField />
+          <Background />
+          <Noise />
+        </div>
+        <Header />
+        <div className="relative flex flex-col gap-8 md:text-2xl max-w-screen-md justify-center h-full lg:h-screen m-auto p-8 mt-16 lg:mt-0 text-xl">
           <div>
             Hi, I'm Yanisa ☺︎ <br />
             I'm a full-stack engineer based in Bangkok and Lampang, Thailand.
@@ -69,6 +71,8 @@ const AboutPage = () => {
             </Link>
           </div>
         </div>
+      </div>
+      <div className="relative">
         <CopyrightFooter />
       </div>
     </div>

@@ -131,7 +131,7 @@ export const Header = () => {
             menuOpen ? "text-black" : "text-white"
           } md:hidden p-2 rounded mt-4 focus:outline-none focus:ring-none cursor-pointer`}
         >
-          {menuOpen ? <X size={24} className="" /> : <Menu size={24} />}
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
       {menuOpen && (
@@ -140,9 +140,9 @@ export const Header = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden bg-[#f8f8f8] -mt-16 min-h-[55vh] m-2 rounded-2xl"
+          className="z-50 md:hidden bg-[#eeeeee] -mt-16 min-h-fit pb-12 m-2 rounded-2xl"
         >
-          <div className="flex flex-col pt-24 justify-center items-center gap-12 text-black">
+          <div className="z-50 flex flex-col pt-24 justify-center items-center gap-12 text-black">
             {sitemap.map((item: any) => (
               <Link
                 target={item.isExternal ? "_blank" : undefined}
