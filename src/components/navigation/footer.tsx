@@ -7,7 +7,7 @@ import { GithubIcon } from "../icons/github";
 import { motion } from "motion/react";
 export const Footer = () => {
   return (
-    <footer className="absolute max-w-screen mx-auto w-full inset-x-0 justify-center py-4 z-[99] pointer-events-auto">
+    <footer className="absolute max-w-screen mx-auto w-full inset-x-0 justify-center py-4 z-40 pointer-events-auto">
       <div className="min-h-[70vh] my-auto justify-center flex flex-col px-6 md:px-24">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
