@@ -1,74 +1,62 @@
-import React from "react";
-import { Font } from "./Font";
+"use client";
+import { Component, ReactNode, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { useControls } from "leva";
-import { Environment, Lightformer, OrbitControls } from "@react-three/drei";
-import {
-  EffectComposer,
-  HueSaturation,
-  TiltShift2,
-} from "@react-three/postprocessing";
+import { Environment, Lightformer } from "@react-three/drei";
+import { Font } from "./Font";
+import { chromeMaterialConfig } from "./chrome-config";
 
 interface ChromeProps {
-  text: string;
+  lines: string[];
 }
 
-const configVaraints = {
-  environment: true,
-  backside: true,
-  metalness: { value: 0.5, min: 0, max: 1, step: 0.01 },
-  saturation: { value: -1, min: -1, max: 0 },
-  backsideThickness: { value: 0.5, min: 0, max: 1, step: 0.01 },
-  thickness: { value: 6.29, min: 0, max: 30, step: 0.01 },
-  samples: { value: 5, min: 1, max: 32, step: 1 },
-  transmission: { value: 1, min: 0, max: 1 },
-  clearcoat: { value: 0.1, min: 0.1, max: 1 },
-  clearcoatRoughness: { value: 0, min: 0, max: 1 },
-  chromaticAberration: { value: 5, min: 0, max: 5 },
-  anisotropy: { value: 1, min: 0, max: 1, step: 0.01 },
-  roughness: { value: 0, min: 0, max: 1, step: 0.01 },
-  distortion: { value: 4, min: 0, max: 4, step: 0.01 },
-  distortionScale: { value: 0.46, min: 0.01, max: 1, step: 0.01 },
-  temporalDistortion: { value: 0.69, min: 0, max: 1, step: 0.01 },
-  ior: { value: 1.57, min: 0, max: 2, step: 0.01 },
-  color: "#ffffff",
-  stripes: "#444",
-  shadow: "black",
-};
-const Chrome = ({ text }: ChromeProps) => {
-  const isDev = process.env.NODE_ENV === "development";
-  const config = isDev
-    ? useControls(configVaraints)
-    : Object.fromEntries(
-        Object.entries(configVaraints).map(([k, v]) => [
-          k,
-          typeof v === "object" && "value" in v ? v.value : v,
-        ])
-      );
+class ChromeErrorBoundary extends Component<
+  { children: ReactNode; fallback: ReactNode },
+  { hasError: boolean }
+> {
+  state = { hasError: false };
+
+  static getDerivedStateFromError(): { hasError: boolean } {
+    return { hasError: true };
+  }
+
+  render(): ReactNode {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+    return this.props.children;
+  }
+}
+
+function ChromeFallback({ lines }: { lines: string[] }) {
+  return (
+    <div className="px-6">
+      {lines.map((line) => (
+        <h1
+          key={line}
+          className="font-climate-crisis text-5xl leading-tight uppercase md:text-7xl"
+        >
+          {line}
+        </h1>
+      ))}
+    </div>
+  );
+}
+
+function ChromeScene({ lines }: { lines: string[] }) {
+  const lineOffset = 1.15;
 
   return (
-    <Canvas
-      shadows
-      orthographic
-      camera={{ position: [-1, 0, 5], zoom: 75 }}
-      gl={{
-        antialias: true,
-        preserveDrawingBuffer: false,
-      }}
-      style={{
-        width: "100vw",
-        margin: "auto",
-      }}
-    >
-      {/* <Perf position="top-left" /> */}
+    <>
       <ambientLight intensity={10} />
-
-      <group position={[0, -0.5, 0]}>
-        <Font lights environment={true} config={config}>
-          {text}
-        </Font>
+      <group position={[0, ((lines.length - 1) * lineOffset) / 2 - 0.5, 0]}>
+        {lines.map((line, index) => (
+          <group key={line} position={[0, -index * lineOffset, 0]}>
+            <Font lights config={chromeMaterialConfig}>
+              {line}
+            </Font>
+          </group>
+        ))}
       </group>
-
       <Environment resolution={32}>
         <group rotation={[-Math.PI / 4, -0.3, 1]}>
           <Lightformer
@@ -91,24 +79,40 @@ const Chrome = ({ text }: ChromeProps) => {
           />
         </group>
       </Environment>
+    </>
+  );
+}
 
-      <EffectComposer multisampling={1}>
-        <HueSaturation hue={0} saturation={config?.saturation as any} />
-        <TiltShift2 blur={0} />
-      </EffectComposer>
-      {/* <OrbitControls
-        enableRotate={true}
-        enableZoom={false}
-        minDistance={4.5}
-        maxDistance={5.5}
-        minPolarAngle={Math.PI / 2 - 0.1}
-        maxPolarAngle={Math.PI / 2 + 0.1}
-        minAzimuthAngle={-0.1}
-        maxAzimuthAngle={0.1}
-        enableDamping={true}
-        dampingFactor={0.05}
-      /> */}
-    </Canvas>
+const Chrome = ({ lines }: ChromeProps) => {
+  return (
+    <ChromeErrorBoundary fallback={<ChromeFallback lines={lines} />}>
+      <Canvas
+        shadows
+        orthographic
+        camera={{ position: [-1, 0, 5], zoom: 75 }}
+        dpr={[1, 1.5]}
+        gl={{
+          alpha: true,
+          antialias: true,
+          stencil: false,
+          preserveDrawingBuffer: false,
+          powerPreference: "high-performance",
+        }}
+        onCreated={({ gl }) => {
+          gl.setClearColor(0x000000, 0);
+        }}
+        style={{
+          width: "100vw",
+          height: lines.length > 1 ? "46vh" : "28vh",
+          margin: "auto",
+          pointerEvents: "none",
+        }}
+      >
+        <Suspense fallback={null}>
+          <ChromeScene lines={lines} />
+        </Suspense>
+      </Canvas>
+    </ChromeErrorBoundary>
   );
 };
 

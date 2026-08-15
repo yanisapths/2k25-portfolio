@@ -1,29 +1,36 @@
 "use client";
-import { GlassDock } from "@/components/effect/GlassDock";
+import { useIsMobile } from "@/app-hooks/use-is-mobile";
 import { Noise } from "@/components/effect/Noise";
 import { Background } from "@/components/home/background/Background";
-import StarField from "@/components/home/background/StarField";
 import { GithubIcon } from "@/components/icons/github";
 import { Instagram } from "@/components/icons/instagram";
 import { Linkedin } from "@/components/icons/linkedin";
-import { CopyrightFooter, Footer } from "@/components/navigation/footer";
+import { CopyrightFooter } from "@/components/navigation/footer";
 import { Header } from "@/components/navigation/header";
 import { Mail } from "lucide-react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import React from "react";
 
+const StarField = dynamic(
+  () => import("@/components/home/background/StarField"),
+  { ssr: false }
+);
+
 const AboutPage = () => {
+  const isMobile = useIsMobile();
+  const enableHeavyFx = isMobile === false;
+
   return (
     <div className="scroll-smooth">
       <div className="lg:flex lg:flex-col lg:h-auto lg:w-screen lg:items-center lg:justify-center">
-        {" "}
-        <div className="fixed inset-0">
-          <StarField />
+        <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden>
+          {enableHeavyFx && <StarField />}
           <Background />
-          <Noise />
+          {enableHeavyFx && <Noise />}
         </div>
         <Header />
-        <div className="relative flex flex-col gap-8 md:text-2xl max-w-screen-md justify-center h-full lg:h-screen m-auto p-8 mt-16 lg:mt-0 text-xl">
+        <div className="relative z-10 flex flex-col gap-8 md:text-2xl max-w-screen-md justify-center h-full lg:h-screen m-auto p-8 mt-16 lg:mt-0 text-xl">
           <div>
             Hi, I'm Yanisa ☺︎ <br />
             I'm a full-stack engineer based in Bangkok and Lampang, Thailand.

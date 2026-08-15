@@ -1,31 +1,24 @@
-import React, { ReactNode, Suspense, useEffect, useState } from "react";
-import { useLoader } from "@react-three/fiber";
-import { Text3D, Center, MeshTransmissionMaterial } from "@react-three/drei";
-import { RGBELoader } from "three-stdlib";
+"use client";
+import { ReactNode, Suspense } from "react";
+import { Center, MeshTransmissionMaterial, Text3D } from "@react-three/drei";
+import type { ChromeMaterialConfig } from "./chrome-config";
 
 interface FontProps {
   height?: number;
   fontUrl?: string;
   children: ReactNode;
   lights?: boolean;
-  environment: boolean;
-  config: any;
+  config: ChromeMaterialConfig;
 }
 
 export const Font = ({
   height = 0.3,
   fontUrl = "/fonts/climate-crisis.typeface.json",
-  lights,
-  environment,
+  lights = true,
   config,
   children,
   ...props
 }: FontProps) => {
-  const texture = useLoader(
-    RGBELoader,
-    "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/fireplace_1k.hdr"
-  );
-
   return (
     <group>
       <Suspense fallback={null}>
@@ -39,18 +32,31 @@ export const Font = ({
             letterSpacing={-0.03}
             bevelSize={0.01}
             bevelSegments={3}
-            curveSegments={64}
+            curveSegments={32}
             bevelThickness={0.1}
           >
             {children}
             {lights ? (
               <MeshTransmissionMaterial
-                {...config}
-                backside={lights && config.backside}
-                background={lights && environment && texture}
+                backside={config.backside}
+                backsideThickness={config.backsideThickness}
+                metalness={config.metalness}
+                thickness={config.thickness}
+                samples={config.samples}
+                transmission={config.transmission}
+                clearcoat={config.clearcoat}
+                clearcoatRoughness={config.clearcoatRoughness}
+                chromaticAberration={config.chromaticAberration}
+                anisotropy={config.anisotropy}
+                roughness={config.roughness}
+                distortion={config.distortion}
+                distortionScale={config.distortionScale}
+                temporalDistortion={config.temporalDistortion}
+                ior={config.ior}
+                color={config.color}
               />
             ) : (
-              <meshPhysicalMaterial {...config} transmission={0} color="#999" />
+              <meshPhysicalMaterial transmission={0} color="#999" />
             )}
           </Text3D>
         </Center>

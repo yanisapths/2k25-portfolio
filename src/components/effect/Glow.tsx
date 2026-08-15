@@ -8,7 +8,7 @@ interface GlowProps {
 export const GlowDp1 = ({ className }: GlowProps) => {
   return (
     <div
-      className={cn(className)}
+      className={cn("max-md:hidden", className)}
       style={{
         background:
           "linear-gradient(179.89deg, rgba(255, 255, 255, 0) -206.11%, rgba(255, 255, 255, 0.5) 138.73%)",

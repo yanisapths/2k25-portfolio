@@ -1,7 +1,7 @@
 "use client";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import { useEffect, useRef } from "react";
 
 interface CardProps {
   title: string;
@@ -11,17 +11,38 @@ interface CardProps {
 
 export const Card = ({ title, src, link }: CardProps) => {
   const isVideo = src.endsWith(".mp4");
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          void video.play();
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="relative group overflow-hidden rounded-xl border border-[#757883]/30 hover:border-[#757883] transition-transform duration-600 ease-in-out h-[265px] cursor-pointer flex items-center justify-center bg-black/10">
       <Link href={link} target="_blank">
         {isVideo ? (
           <video
+            ref={videoRef}
             src={src}
-            autoPlay
             loop
             muted
             playsInline
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover opacity-70 bg-cover bg-center transition-transform duration-700 ease-in-out group-hover:scale-135 group-hover:opacity-80"
           />
         ) : (

@@ -23,7 +23,7 @@ const generateStars = (count: number): Star[] => {
 
 export function ZoomedParticles() {
   const ref = useRef<Points>(null);
-  const count = 1000;
+  const count = 400;
   const stars = useRef(generateStars(count));
   const positionsArray = useRef(new Float32Array(stars.current.length * 3));
 
