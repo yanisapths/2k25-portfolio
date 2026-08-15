@@ -3,7 +3,7 @@ import React from "react";
 export const Noise = () => {
   return (
     <svg
-      className="absolute inset-0 w-full h-full"
+      className="absolute inset-0 w-full h-full pointer-events-none max-md:hidden"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="none"
     >

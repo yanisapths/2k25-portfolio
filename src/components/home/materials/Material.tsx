@@ -6,7 +6,7 @@ import { archiveExperimentLink } from "@/components/navigation/sitemap";
 
 export const Material = () => {
   return (
-    <div className="pointer-events-auto relative flex flex-col m-auto w-full min-h-screen h-auto lg:h-screen overflow-hidden">
+    <div className="pointer-events-auto relative flex flex-col m-auto w-full min-h-screen h-auto lg:h-screen overflow-hidden mb-24">
       <div className="relative flex flex-col justify-center h-full items-center">
         <p className="text-6xl md:text-8xl lg:text-9xl font-black uppercase mb-16">
           CRAFT

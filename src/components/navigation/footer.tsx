@@ -13,7 +13,7 @@ export const Footer = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          viewport={{ amount: 0.5 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <p className="font-black text-6xl md:text-9xl font-montserrat justify-center text-center items-center m-auto">
             LET'S BUILD TOGETHER
@@ -46,7 +46,7 @@ export const CopyrightFooter = () => {
   const currentYear = dayjs().year();
 
   return (
-    <div className="max-w-screen-2xl mx-auto py-4 w-full flex md:flex-row flex-col text-center justify-center z-50 lg:justify-between text-white">
+    <div className="max-w-screen-lg mx-auto py-4 w-full flex md:flex-row flex-col text-center justify-center z-50 lg:justify-between text-white/60 text-xs">
       <p>© {currentYear} All Rights Reserved.</p>
 
       <p>DESIGNED AND DEVELOPED BY YANISA P.</p>

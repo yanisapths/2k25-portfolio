@@ -21,5 +21,4 @@ export const sitemap = [
     href: "/images/resume.pdf",
     isExternal: true,
   },
-  ,
 ];

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMediaQuery } from "react-responsive";
+import { useEffect, useState } from "react";
 
 export const breakpoint = {
   sm: 481,
@@ -13,26 +13,37 @@ interface UseBreakpointsOptions {
   exact?: boolean;
 }
 
+function useMatchMedia(query: string): boolean {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const mediaQueryList = window.matchMedia(query);
+    const onChange = () => setMatches(mediaQueryList.matches);
+
+    onChange();
+    mediaQueryList.addEventListener("change", onChange);
+    return () => mediaQueryList.removeEventListener("change", onChange);
+  }, [query]);
+
+  return matches;
+}
+
 export const useBreakpoints = (options?: UseBreakpointsOptions) => {
-  const xs = useMediaQuery({
-    query: mediaQuery.xs,
-  });
+  const xs = useMatchMedia(mediaQuery.xs);
 
-  const sm = useMediaQuery({
-    query: options?.exact ? mediaQueryExact.sm : mediaQuery.sm,
-  });
+  const sm = useMatchMedia(
+    options?.exact ? mediaQueryExact.sm : mediaQuery.sm
+  );
 
-  const md = useMediaQuery({
-    query: options?.exact ? mediaQueryExact.md : mediaQuery.md,
-  });
+  const md = useMatchMedia(
+    options?.exact ? mediaQueryExact.md : mediaQuery.md
+  );
 
-  const lg = useMediaQuery({
-    query: options?.exact ? mediaQueryExact.lg : mediaQuery.lg,
-  });
+  const lg = useMatchMedia(
+    options?.exact ? mediaQueryExact.lg : mediaQuery.lg
+  );
 
-  const xl = useMediaQuery({
-    query: mediaQuery.xl,
-  });
+  const xl = useMatchMedia(mediaQuery.xl);
 
   return {
     breakpoint,

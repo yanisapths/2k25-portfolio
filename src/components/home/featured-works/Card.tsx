@@ -1,5 +1,4 @@
 "use client";
-import { useBreakpoints } from "@/app-hooks/use-breakpoints";
 import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import { useRef } from "react";
@@ -34,7 +33,6 @@ const Card = ({
   targetScale,
 }: CardProps) => {
   const container = useRef(null);
-  const { lg } = useBreakpoints();
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "start start"],
@@ -65,18 +63,17 @@ const Card = ({
           </div>
         </div>
       )}
-      {lg ? (
-        <motion.div
-          onClick={handleClick}
-          className="relative flex flex-col h-[600px] w-[1200px] rounded-2xl py-8 px-20 origin-top backdrop-blur-md"
-          style={{
-            backgroundColor: color ? color : "rgba(0, 0, 0, 0.4)",
-            boxShadow: "inset 0px 0px 10px 1px rgba(255, 255, 255, 0.25)",
-            backdropFilter: "blur(20px)",
-            top: `calc(-5vh + ${i * 25}px)`,
-            scale,
-          }}
-        >
+      <motion.div
+        onClick={handleClick}
+        className="relative hidden lg:flex flex-col h-[600px] w-[1200px] rounded-2xl py-8 px-20 origin-top backdrop-blur-md"
+        style={{
+          backgroundColor: color ? color : "rgba(0, 0, 0, 0.4)",
+          boxShadow: "inset 0px 0px 10px 1px rgba(255, 255, 255, 0.25)",
+          backdropFilter: "blur(20px)",
+          top: `calc(-5vh + ${i * 25}px)`,
+          scale,
+        }}
+      >
           <div
             className={`${
               link != "" ? "cursor-pointer" : ""
@@ -118,18 +115,17 @@ const Card = ({
               </div>
             </div>
           </div>
-        </motion.div>
-      ) : (
-        <motion.div
-          className="relative flex flex-col h-[450px] w-[340px] rounded-2xl p-6 origin-top backdrop-blur-md"
-          style={{
-            backgroundColor: color ? color : "rgba(0, 0, 0, 0.4)",
-            boxShadow: "inset 0px 0px 10px 1px rgba(255, 255, 255, 0.25)",
-            backdropFilter: "blur(20px)",
-            top: `calc(-5vh + ${i * 25}px)`,
-            scale,
-          }}
-        >
+      </motion.div>
+      <motion.div
+        className="relative flex lg:hidden flex-col h-[450px] w-[340px] rounded-2xl p-6 origin-top backdrop-blur-md"
+        style={{
+          backgroundColor: color ? color : "rgba(0, 0, 0, 0.4)",
+          boxShadow: "inset 0px 0px 10px 1px rgba(255, 255, 255, 0.25)",
+          backdropFilter: "blur(20px)",
+          top: `calc(-5vh + ${i * 25}px)`,
+          scale,
+        }}
+      >
           <MobileCard
             title={title}
             description={description}
@@ -140,9 +136,8 @@ const Card = ({
             i={i}
             imageScale={imageScale}
             handleClick={handleClick}
-          />
-        </motion.div>
-      )}
+        />
+      </motion.div>
     </div>
   );
 };

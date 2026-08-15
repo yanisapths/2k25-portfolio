@@ -13,13 +13,14 @@ export default function Saturn() {
           console.warn("WebGL context lost, attempting to restore...");
         });
       }}
+      dpr={[1, 1.5]}
       gl={{
         antialias: true,
         preserveDrawingBuffer: false,
         powerPreference: "high-performance",
       }}
       camera={{ position: [5, 0, 5], fov: 50 }}
-      style={{ width: "100%", height: "100%" }}
+      style={{ width: "100%", height: "100%", pointerEvents: "none" }}
     >
       <Suspense fallback={null}>
         <ambientLight intensity={0.1} />

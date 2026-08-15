@@ -1,16 +1,24 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Custom hook to detect scroll direction and visibility.
  * - Returns `true` when user scrolls up or near top
  * - Returns `false` when scrolling down
  */
-export function useScrollDirection(offset: number = 50) {
+export function useScrollDirection(
+  offset: number = 50,
+  enabled: boolean = true
+) {
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
+    if (!enabled) {
+      setIsVisible(true);
+      return;
+    }
+
     let ticking = false;
 
     const handleScroll = () => {
@@ -18,13 +26,13 @@ export function useScrollDirection(offset: number = 50) {
 
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          if (currentScrollY < offset || currentScrollY < lastScrollY) {
+          if (currentScrollY < offset || currentScrollY < lastScrollY.current) {
             setIsVisible(true);
           } else {
             setIsVisible(false);
           }
 
-          setLastScrollY(currentScrollY);
+          lastScrollY.current = currentScrollY;
           ticking = false;
         });
         ticking = true;
@@ -33,7 +41,7 @@ export function useScrollDirection(offset: number = 50) {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, offset]);
+  }, [enabled, offset]);
 
   return isVisible;
 }
